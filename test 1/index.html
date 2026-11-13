@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annapurna – Ghar ka fresh khana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbe9da;--bg2:#f6d9c0;--card:#fff8f1;--maroon:#8a2a1f;--maroon-d:#6f1f16;--ink:#3b1d16;--muted:#5a3a30;--line:rgba(138,42,31,.18);--chip:#f5dcc6;--brass:#b8873a;--serif:"Newsreader",Georgia,serif;--sans:"Outfit",system-ui,sans-serif;--pad:clamp(20px,5vw,80px)}
+[data-theme=dark]{--bg:#1d1411;--bg2:#251915;--card:#32221c;--ink:#f5e4d6;--muted:#d1b5a4;--line:rgba(245,220,198,.2);--chip:#3f2b23;--maroon:#c4503f;--maroon-d:#a53f30}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--maroon);color:#fff;font-weight:500;border-radius:999px;min-height:44px;padding:0 26px;transition:background .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--maroon-d);transform:translateY(-2px);box-shadow:0 10px 24px rgba(138,42,31,.28)}.btn.alt{background:var(--chip);color:var(--ink)}
+.btn:disabled{opacity:.45;pointer-events:none}
+.lnk{text-decoration:underline;min-height:44px;color:var(--muted)}
+.acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.hint{font-size:.85rem;color:var(--muted)}
+/* HERO – colours are fixed to the light palette so dark mode doesn't affect it */
+.hero{--bg:#fbe9da;--bg-deep:#f6d9c0;--maroon:#8a2a1f;--maroon-dark:#6f1f16;--ink:#3b1d16;--line:rgba(138,42,31,.15);--chip:#f5dcc6;--leaf:#5b6b32;
+ position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;color:var(--ink);background:linear-gradient(100deg,#fdeee0 0%,var(--bg) 45%,var(--bg-deep) 100%)}
+.hero-media{position:absolute;inset:0;background:url("hero.png") right bottom/cover no-repeat;z-index:0}
+/* STEAM */
+.steam{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wisp{opacity:0;transform-box:fill-box;transform-origin:50% 100%;animation:rise 7s ease-out infinite}
+.w1{animation-delay:0s}
+.w2{animation-delay:2.3s;animation-duration:8s}
+.w3{animation-delay:4.6s;animation-duration:7.5s}
+.w4{animation-delay:1.2s;animation-duration:6.5s}
+.w5{animation-delay:3.4s;animation-duration:6.5s}
+@keyframes rise{
+  0%   {opacity:0;   transform:translateY(20px) scale(.7, .6)}
+  20%  {opacity:.6}
+  60%  {opacity:.38}
+  100% {opacity:0;   transform:translateY(-120px) scale(1.7, 1.15)}
+}
+@media(prefers-reduced-motion:reduce){.wisp{animation:none;opacity:.2}*{transition:none!important}html{scroll-behavior:auto}}
+.nav{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin:0 var(--pad);padding:22px 0;border-bottom:1px solid var(--line)}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.75rem;font-weight:500;color:var(--maroon-dark)}.logo svg,.logo img{width:40px;height:40px;object-fit:contain}
+.links{display:flex;gap:clamp(24px,3.4vw,52px);list-style:none}
+.links button{font-size:1rem;font-weight:500;padding:8px 2px;position:relative;min-height:44px;color:var(--ink)}
+.links button::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;background:var(--maroon);transform:scaleX(0);transition:transform .25s;transform-origin:left}.links button:hover::after{transform:scaleX(1)}
+.nav .btn{justify-self:end}
+.btn-sm{padding:0 30px;font-size:1rem}.btn-lg{padding:20px 38px;font-size:1.2rem;gap:14px}
+.btn svg{width:24px;height:24px;transition:transform .2s}.btn:hover svg{transform:translateX(4px)}
+.content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;margin:0 var(--pad);padding:clamp(32px,6vh,72px) 0 clamp(48px,8vh,96px);max-width:720px}
+h1{font-family:var(--serif);font-weight:600;color:var(--maroon);font-size:clamp(3.2rem,7.2vw,6.4rem);line-height:1.02;letter-spacing:-.02em}
+.sub{position:relative;display:inline-block;align-self:flex-start;font-family:var(--serif);font-style:italic;font-weight:400;color:var(--maroon);font-size:clamp(1.6rem,3.2vw,2.6rem);margin-top:clamp(14px,2.4vh,26px)}
+.sub svg{position:absolute;left:38%;right:0;bottom:-14px;width:62%;height:14px}
+.features{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px);margin-top:clamp(32px,6vh,56px);flex-wrap:wrap}
+.feature{display:flex;align-items:center;gap:16px;font-size:1.05rem;line-height:1.35;color:var(--ink)}
+.feature .ic{flex:none;width:60px;height:60px;border-radius:50%;background:var(--chip);display:grid;place-items:center}.feature .ic svg{width:30px;height:30px}
+.divider{width:1px;height:52px;background:var(--line)}.cta{margin-top:clamp(32px,6vh,52px);align-self:flex-start}
+@media(max-width:960px){.nav{grid-template-columns:1fr auto}.links{display:none}.hero-media{background-position:75% bottom}.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(251,233,218,.92) 0%,rgba(251,233,218,.6) 55%,rgba(251,233,218,0) 100%);z-index:0;pointer-events:none}.divider{display:none}}
+@media(max-width:520px){.logo{font-size:1.45rem}.logo svg,.logo img{width:32px;height:32px}.btn-sm{padding:0 22px}.features{flex-direction:column;align-items:flex-start}.cta{width:100%}}
+/* BUILDER */
+#builder{background:url("order.png") center/cover no-repeat,linear-gradient(135deg,#fdeee0,#fbe9da 50%,#f6d9c0);padding:0 var(--pad) 56px;min-height:100vh;color:#3b1d16;scroll-margin-top:0}
+[data-theme=dark] #builder{background:var(--bg2);color:var(--ink)}
+.bnav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:22px var(--pad);border-bottom:1px solid var(--line);margin:0 calc(var(--pad)*-1) 28px;flex-wrap:wrap}
+.bnav .logo{font-family:var(--serif);font-size:1.75rem;font-weight:500;color:var(--maroon-d)}
+.bnav .btn.alt{background:rgba(245,220,198,.7);box-shadow:0 2px 8px rgba(138,42,31,.1)}
+[data-theme=dark] .bnav .btn.alt{background:var(--chip)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,4.5vw,3.4rem);color:#5a1a12;margin:0 0 24px;padding-left:clamp(0px,2vw,32px)}
+[data-theme=dark] #builder h2{color:var(--ink)}
+.cols{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:32px;align-items:start}
+.panel{position:sticky;top:12px;background:rgba(255,248,241,.85);border:1px solid var(--line);border-radius:36px;padding:28px 28px 22px;text-align:center;box-shadow:0 10px 30px rgba(138,42,31,.08)}
+[data-theme=dark] .panel{background:var(--card)}
+.panel h3{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:#5a1a12}
+[data-theme=dark] .panel h3{color:var(--ink)}
+.plate{position:relative;width:100%;max-width:340px;aspect-ratio:1;margin:16px auto 22px;border-radius:50%;background:radial-gradient(circle,#e8c27a 0 48%,#c9a04f 52%,#8c6428 100%) center/cover;box-shadow:0 14px 30px rgba(120,80,20,.3),inset 0 0 0 6px rgba(255,240,200,.45)}
+.d{position:absolute;aspect-ratio:1;overflow:visible}
+.d>img,.d>i{width:100%;height:100%;display:block}
+.d>img{object-fit:contain;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35))}
+.d>i{border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.4)}
+.d.pop{animation:pop .35s cubic-bezier(.3,1.6,.5,1)}@keyframes pop{from{transform:scale(.2);opacity:0}}
+.badge{position:absolute;right:-4px;top:-4px;background:var(--maroon);color:#fff;border-radius:99px;min-width:24px;height:24px;font-size:.8rem;display:grid;place-items:center;z-index:3}
+.empty{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:#fff;font-size:1.1rem;padding:20%}
+.macros{display:flex;align-items:center;justify-content:center;gap:28px;padding:6px 0 18px;border-bottom:1px solid var(--line)}
+.mac{display:flex;align-items:center;gap:12px;text-align:left}
+.mac .mi{font-size:2rem;line-height:1}
+.mac small{display:block;font-size:.85rem;color:var(--muted)}
+.mac b{font-size:1.5rem;font-weight:500;line-height:1.1}
+.mdiv{width:1px;height:44px;background:var(--line)}
+.tot{display:flex;justify-content:space-between;font-family:var(--serif);font-size:1.6rem;font-weight:600;margin:16px 4px}
+.panel .btn{width:100%;min-height:54px;font-size:1.05rem}
+.tabs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.tab{min-height:44px;padding:0 24px;border-radius:999px;background:rgba(255,248,241,.85);box-shadow:0 2px 8px rgba(138,42,31,.1);font-weight:500}
+[data-theme=dark] .tab{background:var(--chip)}
+.tab[aria-selected=true]{background:linear-gradient(#b8432f,#8a2a1f);color:#fff}
+.banner{background:var(--card);border:1px solid var(--brass);border-radius:18px;padding:14px 18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}.banner b{font-family:var(--serif);font-size:1.25rem}
+.grid{min-height:460px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px;align-content:start}
+.card{position:relative;background:rgba(255,248,241,.9);border:1px solid var(--line);border-radius:24px;padding:16px 14px;text-align:center;display:flex;flex-direction:column;gap:6px;align-items:center;box-shadow:0 4px 14px rgba(138,42,31,.07)}
+[data-theme=dark] .card{background:var(--card)}
+.bowl{width:82%;aspect-ratio:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+.bowl>img,.bowl>i{width:100%;height:100%;display:block}.bowl>img{object-fit:contain}.bowl>i{border-radius:50%}
+i.ph{background:var(--c)}
+.nm{font-weight:500;display:flex;gap:6px;align-items:center;justify-content:center}.pr{color:var(--maroon);font-weight:600;font-size:1.1rem}
+.vg{width:14px;height:14px;border:2px solid #2e7d32;display:inline-grid;place-items:center;flex:none}.vg::after{content:"";width:6px;height:6px;border-radius:50%;background:#2e7d32}.vg.n{border-color:#b3261e}.vg.n::after{background:#b3261e}
+.add{min-height:44px;width:100%;border-radius:999px;border:1.5px solid var(--maroon);color:var(--maroon);font-weight:600}.add.on{background:var(--maroon);color:#fff}
+.step{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px}.step button{width:44px;height:44px;border-radius:50%;background:var(--maroon);color:#fff;font-size:1.4rem}
+.note{padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:99px;z-index:99;opacity:0;pointer-events:none;transition:.25s;max-width:90vw}#toast.on{opacity:1}
+@media(max-width:860px){.cols{grid-template-columns:1fr}.panel{z-index:5;padding:18px}.plate{max-width:240px}.macros{gap:16px}.mac b{font-size:1.25rem}}
+</style></head><body><div id="app"></div><div id="toast" role="status"></div>
+<script>
+/* Optional: paste a full "data:image/jpeg;base64,..." string here to embed the hero image. If left empty, hero.png (same folder) is used. */
+const HERO="";
+
+/* ============ Helpers ============ */
+const $=(s,r=document)=>r.querySelector(s),app=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2600)};
+const hue=s=>[...String(s)].reduce((a,c)=>a*31+c.charCodeAt(0)>>>0,7)%360;
+
+/* Direct SVG URL resolver: maps dish name -> "<Dish Name>.svg" in the same folder.
+   Replaces "/" with a space so "Millet/Quinoa" looks for "Millet Quinoa.svg". */
+const svgPath=name=>encodeURI(`${String(name||'').trim().replace(/\//g,' ')}.svg`);
+
+/* ============ STATIC MENU DATA ============ */
+const SETTINGS={name:'Annapurna',logo:null,plateImg:null,max:7,cur:'₹'};
+
+const RAW_MENU=[
+  ['Sabzi','bowl',['Paneer Palak:150','Gobi ki Sabzi:120','Bhindi Fry:130','Matar Mushroom:140','Stuffed Capsicum:150','Jeera Aloo:110']],
+  ['Dal','bowl',['Dal Tadka:110','Dal Makhani:140']],
+  ['Raita & Salads','bowl',['Plain Dahi:40','Boondi Raita:50','Kachumber:50','Green Salad:50']],
+  ['Chutneys & Pickles','bowl',['Mint Chutney:20','Tamatar Chutney:25','Mango Pickle:20','Cirke wala Pyaj:25']],
+  ['Rice & Millets','rice',['Steamed Rice:70','Lemon Rice:90','Millet/Quinoa:110']],
+  ['Rotis & Breads','bread',['Tikona Paratha:30','Millet Roti:25','Phulka:15','Sabudana Papad:20']]
+];
+
+const CATEGORIES=[];
+const ITEMS=[];
+RAW_MENU.forEach(([name,type,its],ci)=>{
+  const id='c'+ci;
+  CATEGORIES.push({id,name,type,order:ci});
+  its.forEach((s,i)=>{
+    const[n,p]=s.split(':');
+    ITEMS.push({id:id+'i'+i,categoryId:id,name:n,price:+p,description:'',veg:true,available:true,order:i});
+  });
+});
+
+const GUIDE=[
+  ['c0','Pick your sabzis','2 is typical'],
+  ['c1','Choose a dal',''],
+  ['c4','Choose your rice',''],
+  ['c5','Add rotis','2–3 are typical'],
+  ['c2','Raita or salad',''],
+  ['c3','Chutneys & pickles','Optional']
+].map(([cat,title,hint])=>({cat,title,hint}));
+
+/* Nutrition per serving in grams: [protein, carbs] */
+const NUTR={
+  'Paneer Palak':[12,9],'Gobi ki Sabzi':[4,12],'Bhindi Fry':[3,10],'Matar Mushroom':[6,14],
+  'Stuffed Capsicum':[5,30],'Jeera Aloo':[3,26],'Dal Tadka':[9,20],'Dal Makhani':[11,24],
+  'Plain Dahi':[4,5],'Boondi Raita':[4,9],'Kachumber':[1,6],'Green Salad':[1,5],
+  'Mint Chutney':[0,2],'Tamatar Chutney':[0,4],'Mango Pickle':[0,3],'Cirke wala Pyaj':[0,3],
+  'Steamed Rice':[4,45],'Lemon Rice':[5,48],'Millet/Quinoa':[7,38],
+  'Tikona Paratha':[4,22],'Millet Roti':[3,18],'Phulka':[3,15],'Sabudana Papad':[0,8]
+};
+const nut=it=>{const n=NUTR[it.name]||[0,0];return{p:it.protein??n[0],c:it.carbs??n[1]}};
+
+/* ============ Customer site ============ */
+let cart={bowls:[],rice:null,bread:{}},active=CATEGORIES[0].id,guide=null,lastPop=null;
+const getItem=id=>ITEMS.find(i=>i.id==id);
+const getItems=catId=>ITEMS.filter(i=>!catId||i.categoryId==catId);
+const catOf=it=>CATEGORIES.find(c=>c.id==it.categoryId);
+
+/* Renders `<img src="Dish Name.svg">` and falls back to colored circle if SVG file isn't found */
+const thumb=it=>`<img src="${svgPath(it.name)}" alt="${esc(it.name)}" onerror="this.outerHTML='<i class=\\'ph\\' style=\\'--c:hsl(${hue(it.name)},55%,58%)\\'></i>'">`;
+
+const LOTUS=`<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 8c3 4 5 9 5 15 0 5-2 9-5 12-3-3-5-7-5-12 0-6 2-11 5-15z" fill="#f7b9c4" stroke="#d6566f" stroke-width="1.6" stroke-linejoin="round"/><path d="M19 33C12 32 6 27 4 19c6 0 12 3 15 9M29 33c7-1 13-6 15-14-6 0-12 3-15 9" fill="#f9cdd5" stroke="#d6566f" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 37c-5 0-9-3-11-8 5-1 9 1 12 5M33 37c5 0 9-3 11-8-5-1-9 1-12 5" stroke="#d6566f" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const ARROW=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h17M14 6l6 6-6 6"/></svg>`;
+
+function site(){
+  const S=SETTINGS;
+  app.innerHTML=`<header class="hero"><div class="hero-media" role="img" aria-label="Steel thali with dal, sabzi, rice and roti"></div>
+  <svg class="steam" viewBox="0 0 1910 963" preserveAspectRatio="xMaxYMax slice" aria-hidden="true"><defs><filter id="wisp" filterUnits="userSpaceOnUse" x="1000" y="60" width="700" height="520" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.022" numOctaves="3" seed="7" result="noise"><animate attributeName="baseFrequency" dur="16s" values="0.010 0.022;0.015 0.030;0.010 0.022" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="noise" scale="80" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation="14"/></filter></defs>
+  <g filter="url(#wisp)" fill="none" stroke="#fff" stroke-linecap="round">
+    <g transform="translate(1315 500)"><path class="wisp w1" stroke-width="58" d="M0 0C55-50-55-100 0-150S55-230 0-290"/></g>
+    <g transform="translate(1265 490)"><path class="wisp w2" stroke-width="46" d="M0 0C-50-45 50-90 0-135S-50-210 0-260"/></g>
+    <g transform="translate(1360 495)"><path class="wisp w3" stroke-width="50" d="M0 0C45-55-45-105 0-155S45-225 0-280"/></g>
+    <g transform="translate(1160 585)"><path class="wisp w4" stroke-width="40" d="M0 0C40-40-40-80 0-120S40-170 0-210"/></g>
+    <g transform="translate(1370 680)"><path class="wisp w5" stroke-width="40" d="M0 0C-40-40 40-80 0-120S-40-170 0-210"/></g>
+  </g></svg>
+  <nav class="nav" aria-label="Main"><a href="#" class="logo" aria-label="${esc(S.name)} home">${S.logo?`<img src="${S.logo}" alt="">`:LOTUS}${esc(S.name)}</a>
+  <ul class="links"><li><button data-act="soon">Our Story</button></li><li><button data-act="order">Menu</button></li><li><button data-act="soon">Kitchens</button></li><li><button data-act="soon">Plans</button></li></ul>
+  <button class="btn btn-sm" data-act="order">Order Now</button></nav>
+  <div class="content"><h1>Ghar ka<br>fresh khana.</h1><p class="sub">Delivering in 10 minutes.<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10C80 4 190 3 298 8" stroke="#d9a07f" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg></p>
+  <div class="features"><div class="feature"><span class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="#8a2a1f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 9c-1-1.5 1-2.5 0-4M16 9c-1-1.5 1-2.5 0-4M21 9c-1-1.5 1-2.5 0-4"/><path d="M5 15h22v2a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9v-2z"/><path d="M5 17H2.5M27 17h2.5"/></svg></span><span>Food prepared<br>within 30 minutes</span></div><span class="divider" aria-hidden="true"></span>
+  <div class="feature"><span class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="#5b6b32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 26C4 14 12 5 26 5c0 13-8 21-18 21z"/><path d="M6 26C11 19 16 14 21 11M13 20l4 .5M16 16l4-.5"/></svg></span><span>Fresh,<br>quality ingredients</span></div></div>
+  <button class="btn btn-lg cta" data-act="order">Order Now ${ARROW}</button></div></header>
+  <section id="builder" aria-label="Build your thali"><div class="bnav"><a href="#" class="logo">${S.logo?`<img src="${S.logo}" alt="" style="width:40px;height:40px;object-fit:contain">`:LOTUS}${esc(S.name)}</a><div class="acts"><button class="btn alt" data-act="guide">✨ Create your own thali</button><button class="btn alt" data-act="theme" aria-label="Toggle light or dark theme">◐</button></div></div><h2>Build your thali</h2>
+  <div class="cols"><aside class="panel" id="panel" aria-label="Your thali"></aside><div id="menu"></div></div></section>`;
+  if(HERO)$('.hero-media').style.backgroundImage=`url("${HERO}")`;
+  draw();
+}
+
+const draw=()=>{if(!$('#panel'))return;drawPanel();drawMenu()};
+const disc=(it,sz,x,y,cls,k)=>`<span class="d ${cls} ${lastPop==it.id+(k||'')?'pop':''}" style="width:${sz}%;left:${x-sz/2}%;top:${y-sz/2}%">${thumb(it)}</span>`;
+
+function lines(){
+  const L=[];
+  cart.bowls=cart.bowls.filter(id=>getItem(id)&&getItem(id).available);
+  if(cart.rice&&!(getItem(cart.rice)&&getItem(cart.rice).available))cart.rice=null;
+  cart.bowls.forEach(id=>L.push([getItem(id),1]));
+  if(cart.rice)L.push([getItem(cart.rice),1]);
+  for(const id in cart.bread){
+    if(getItem(id)&&getItem(id).available&&cart.bread[id]>0)L.push([getItem(id),cart.bread[id]]);
+    else delete cart.bread[id];
+  }
+  return L;
+}
+
+function drawPanel(){
+  const S=SETTINGS,max=+S.max||7,L=lines(),cur=S.cur||'₹',total=L.reduce((a,[i,q])=>a+i.price*q,0);
+  let p='';
+  const T=L.reduce((a,[i,q])=>{const n=nut(i);a.p+=n.p*q;a.c+=n.c*q;return a},{p:0,c:0});
+  /* bigger katoras: 26% discs on a ring of radius 37% */
+  cart.bowls.forEach((id,i)=>{const a=i/max*2*Math.PI-Math.PI/2;p+=disc(getItem(id),26,50+37*Math.cos(a),50+37*Math.sin(a),'k')});
+  if(cart.rice)p+=disc(getItem(cart.rice),25,39,50,'r');
+  const bk=Object.keys(cart.bread),n=bk.reduce((a,k)=>a+cart.bread[k],0);
+  if(n){
+    const m=Math.min(3,n);
+    for(let j=0;j<m;j++)p+=disc(getItem(bk[j%bk.length]),25,61+(j-(m-1)/2)*3.5,50-(j-(m-1)/2)*3.5,'b',bk[j%bk.length]);
+    p+=`<span class="badge" style="position:absolute;left:72%;top:34%">${n}</span>`;
+  }
+  if(!L.length)p+=`<div class="empty">Tap a dish to start your thali</div>`;
+  const stats=[['💪','Protein',T.p],['🌾','Carbohydrate',T.c]];
+  $('#panel').innerHTML=`<h3>Your Thali</h3><div class="plate" style="${S.plateImg?`background-image:url(${S.plateImg})`:''}">${p}</div>
+  <div class="macros">${stats.map(([ic,l,v])=>`<div class="mac"><span class="mi" aria-hidden="true">${ic}</span><div><small>${l}</small><b>${v} g</b></div></div>`).join('<span class="mdiv" aria-hidden="true"></span>')}</div>
+  <div class="tot"><span>Total</span><span>${cur}${total}</span></div><button class="btn" data-act="checkout" ${L.length?'':'disabled'}>Proceed to checkout ${ARROW}</button><button class="lnk" data-act="clear">Clear thali</button>`;
+  lastPop=null;
+}
+
+function drawMenu(){
+  const C=CATEGORIES,S=SETTINGS,cur=S.cur||'₹';
+  let h='',cat;
+  if(guide!=null){
+    const st=guide.steps[guide.i];
+    cat=C.find(c=>c.id==st.cat);
+    h+=`<div class="banner"><div><b>Step ${guide.i+1} of ${guide.steps.length}: ${esc(st.title)}</b><div class="hint">${esc(st.hint)}</div></div><div class="acts"><button class="btn alt" data-act="gback" ${guide.i?'':'disabled'}>Back</button><button class="btn" data-act="gnext">${guide.i==guide.steps.length-1?'Finish':'Next'}</button><button class="btn alt" data-act="gexit">Full menu</button></div></div>`;
+  }else{
+    if(!C.find(c=>c.id==active))active=C[0].id;
+    cat=C.find(c=>c.id==active);
+    h+=`<div class="tabs" role="tablist">${C.map(c=>`<button class="tab" role="tab" aria-selected="${c.id==active}" data-act="tab" data-id="${c.id}">${esc(c.name)}</button>`).join('')}</div>`;
+  }
+  const items=getItems(cat.id);
+  h+=`<div class="grid">${items.map(it=>{
+    const on=cat.type=='bread'?cart.bread[it.id]>0:cat.type=='rice'?cart.rice==it.id:cart.bowls.includes(it.id);
+    const a=!it.available?`<button class="add" disabled>Sold out</button>`:cat.type=='bread'?`<div class="step"><button data-act="dec" data-id="${it.id}" aria-label="Remove one ${esc(it.name)}">−</button><b>${cart.bread[it.id]||0}</b><button data-act="inc" data-id="${it.id}" aria-label="Add one ${esc(it.name)}">+</button></div>`:`<button class="add ${on?'on':''}" data-act="${cat.type=='rice'?'rice':'bowl'}" data-id="${it.id}">${on?'Remove':'Add'}</button>`;
+    return `<article class="card"><div class="bowl">${thumb(it)}</div><div class="nm"><span class="vg ${it.veg?'':'n'}" title="${it.veg?'Veg':'Non-veg'}"></span>${esc(it.name)}</div><div class="pr">${cur}${it.price}</div>${it.description?`<div class="hint">${esc(it.description)}</div>`:''}${a}</article>`;
+  }).join('')}</div>`;
+  $('#menu').innerHTML=h;
+}
+
+function siteClick(act,el){
+  const S=SETTINGS,max=+S.max||7,id=el.dataset.id,it=id&&getItem(id),c=it&&catOf(it);
+  switch(act){
+    case'order':$('#builder').scrollIntoView({behavior:'smooth'});return;
+    case'soon':return toast('This page is coming soon');
+    case'theme':
+      document.documentElement.dataset.theme=document.documentElement.dataset.theme=='dark'?'light':'dark';
+      try{localStorage.theme=document.documentElement.dataset.theme}catch(e){}
+      return;
+    case'tab':active=id;return drawMenu();
+    case'guide':guide={i:0,steps:GUIDE};return drawMenu();
+    case'gback':guide.i--;return drawMenu();
+    case'gexit':guide=null;return drawMenu();
+    case'gnext':
+      if(guide.i>=guide.steps.length-1){guide=null;toast('Your thali is ready! Review it on the left.')}
+      else guide.i++;
+      return drawMenu();
+    case'bowl':{
+      const k=cart.bowls.indexOf(id);
+      if(k>=0)cart.bowls.splice(k,1);
+      else{
+        if(cart.bowls.length>=max)return toast(`Your plate is full (${max} katoras). Remove one to add another.`);
+        if(c.maxSelectable&&cart.bowls.filter(b=>getItem(b).categoryId==c.id).length>=c.maxSelectable)return toast(`You can pick up to ${c.maxSelectable} from ${c.name}.`);
+        cart.bowls.push(id);lastPop=id;
+      }
+      break;
+    }
+    case'rice':if(cart.rice==id)cart.rice=null;else{cart.rice=id;lastPop=id}break;
+    case'inc':
+      if(c.maxSelectable&&Object.keys(cart.bread).filter(b=>getItem(b)&&getItem(b).categoryId==c.id).reduce((a,b)=>a+cart.bread[b],0)>=c.maxSelectable)return toast(`Up to ${c.maxSelectable} from ${c.name}.`);
+      cart.bread[id]=(cart.bread[id]||0)+1;lastPop=id;break;
+    case'dec':if(cart.bread[id]>0)cart.bread[id]--;break;
+    case'clear':cart={bowls:[],rice:null,bread:{}};break;
+    case'checkout':return toast('Checkout is coming soon – this is a placeholder.');
+    default:return;
+  }
+  draw();
+}
+
+app.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]');
+  if(el)siteClick(el.dataset.act,el);
+});
+
+try{document.documentElement.dataset.theme=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}
+site();
+</script></body></html>
