@@ -457,6 +457,53 @@ i.ph{background:var(--c)}
   .cbar-tot b{font-size:1.3rem}
   .cbar .btn{padding:0 18px;font-size:.95rem}
 }
+
+/* ===== LAPTOP ORDER SECTION (>960px) ===== */
+.ptitle,.pfoot,.vd{display:none}
+@media(min-width:961px){
+  #builder{padding-top:18px}
+  .bnav{border-bottom:1px solid rgba(245,228,214,.14);margin-bottom:26px;padding:4px 0 18px}
+  .cols{grid-template-columns:minmax(340px,420px) minmax(0,1fr);gap:32px}
+
+  /* left: Your Thali card */
+  .panel{background:#2b1b15;border:1px solid rgba(245,228,214,.13);border-radius:28px;padding:22px 26px 20px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .ptitle{display:block;text-align:center;font-family:var(--serif);font-weight:600;font-size:1.6rem;color:#f5e4d6;margin-bottom:14px}
+  .thali-top{display:block}
+  .plate-wrap{max-width:280px}
+  .macros{flex-direction:row;justify-content:center;gap:0;border-left:0;padding:18px 0 16px;border-bottom:1px solid rgba(245,228,214,.14)}
+  .mac+.mac{border-left:1px solid rgba(245,228,214,.16);margin-left:24px;padding-left:24px}
+  .mac b{font-size:1.5rem}
+  .pfoot{display:block}
+  .ptotal{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 14px}
+  .ptotal span{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#f5e4d6}
+  .ptotal b{font-size:1.6rem;font-weight:600;color:#fff}
+  .pcheck{width:100%;min-height:52px;font-size:1.05rem;background:linear-gradient(90deg,#b8432f,#9e3322);box-shadow:0 8px 20px rgba(158,51,34,.35)}
+  .pclear{display:block;margin:6px auto 0;color:#e7d4c5;font-size:.95rem;font-weight:500}
+  .cbar{display:none}
+
+  /* right: tabs */
+  .tabs{flex-wrap:wrap;overflow:visible;gap:10px;margin-bottom:20px}
+  .ti,.tl-short{display:none}
+  .tl-full{display:inline}
+  .tab{min-height:44px;padding:0 20px;font-size:.95rem}
+
+  /* right: vertical food cards */
+  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+  .card{grid-template-columns:1fr;justify-items:stretch;text-align:center;padding:18px 12px 14px;gap:12px;border-radius:20px}
+  .bowl{width:100px;height:100px;margin:0 auto}
+  .cinfo{gap:8px;align-items:stretch}
+  .nm{font-size:.95rem;min-height:2.4em;display:flex;align-items:center;justify-content:center;gap:7px;text-align:center}
+  .vd{display:inline-block;flex:none;width:14px;height:14px;border:1.5px solid #3aa85c;border-radius:3px;position:relative}
+  .vd::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:#3aa85c}
+  .cfoot{flex-direction:column;align-items:stretch;gap:10px}
+  .pr{text-align:center;font-size:1rem;font-weight:600;color:#f5e4d6}
+  .add-cir{width:100%;height:40px;border-radius:999px;background:transparent;border:1.5px solid #e0826a;color:#f0a08a;font-size:0}
+  .add-cir::after{content:"Add";font-size:.95rem;font-weight:500}
+  .add-cir:hover{transform:none;background:rgba(224,130,106,.14)}
+  .step{width:100%;height:40px;padding:0 16px;min-width:0}
+  .step button{width:24px;height:24px;font-size:1.2rem}
+  .step b{font-size:.95rem}
+}
 </style></head><body><div id="app"></div><div id="toast" role="status"></div>
 <script>
 /* Optional: paste a full "data:image/jpeg;base64,..." string to embed the hero images.
@@ -651,7 +698,8 @@ function drawPanel(){
   $('#panel').innerHTML=`<div class="thali-top">
     <div class="plate-wrap"><div class="plate" style="${S.plateImg?`background-image:url(${S.plateImg})`:''}">${p}</div></div>
     <div class="macros">${stats.map(([ic,l,v])=>`<div class="mac"><span class="mi" aria-hidden="true">${ic}</span><div><small>${l}</small><b>${v} g</b></div></div>`).join('')}</div>
-  </div>`;
+  </div>
+  <div class="pfoot"><div class="ptotal"><span>Total</span><b>${cur}${total}</b></div><button class="btn pcheck" data-act="checkout" ${L.length?'':'disabled'}>Proceed to checkout ${ARROW}</button><button class="lnk pclear" data-act="clear">Clear thali</button></div>`;
   const cb=$('#cbar');
   if(cb)cb.innerHTML=`<div class="cbar-tot"><span>Total</span><b>${cur}${total}</b></div><button class="btn" data-act="checkout" ${L.length?'':'disabled'}>Continue ${ARROW}</button>`;
   lastPop=null;
@@ -675,7 +723,7 @@ function drawMenu(reset){
     if(!it.available)a=`<button class="add-cir" disabled title="Sold out">×</button>`;
     else if(on)a=`<div class="step"><button data-act="${decAct}" data-id="${it.id}" aria-label="Remove one ${nm}">−</button><b>${qty}</b><button data-act="${incAct}" data-id="${it.id}" aria-label="Add one ${nm}">+</button></div>`;
     else a=`<button class="add-cir" data-act="${incAct}" data-id="${it.id}" aria-label="Add ${nm}">+</button>`;
-    return `<article class="card ${on?'sel':''}"><div class="bowl">${thumb(it)}</div><div class="cinfo"><div class="nm">${nm}</div><div class="cfoot"><div class="pr">${cur}${it.price}</div>${a}</div></div></article>`;
+    return `<article class="card ${on?'sel':''}"><div class="bowl">${thumb(it)}</div><div class="cinfo"><div class="nm"><span class="vd"></span>${nm}</div><div class="cfoot"><div class="pr">${cur}${it.price}</div>${a}</div></div></article>`;
   }).join('')}</div>`;
   $('#menu').innerHTML=h;
   const g=$('#menu .grid');if(g&&gs)g.scrollTop=gs;
